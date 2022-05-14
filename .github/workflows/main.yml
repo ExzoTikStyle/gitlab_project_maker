@@ -1,0 +1,19 @@
+name: Mirror to Gitopia
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Push to Gitopia mirror
+        uses: gitopia/gitopia-mirror-action@v0.4.0
+        with:
+          gitopiaWallet: "${{ secrets.GITOPIA_WALLET }}"
+          remoteUrl: "gitopia://gitopia14sn8kypm6n988ztqsnj4ktpz8zw4dqcvpv83vn/gitlab_project_maker"
